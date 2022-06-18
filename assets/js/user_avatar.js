@@ -46,13 +46,12 @@ $(function () {
     // 为确定按钮绑定点击事件
     $('#btnUpload').on('click', function () {
         // 1.要拿到用户裁剪之后的头像
-        var dataURL = $image
+        let dataURL = $image
             .cropper('getCroppedCanvas', { // 创建一个 Canvas 画布
                 width: 100,
                 height: 100
-            })
-            .toDataURL('image/png') // 将 Canvas 画布上的内容，转化为 base64 格式的字符串
-            
+            }).toDataURL('image/png') // 将 Canvas 画布上的内容，转化为 base64 格式的字符串
+
         // 2.调用接口，把裁剪之后的图片传到服务器
         $.ajax({
             method: 'POST',
@@ -61,6 +60,7 @@ $(function () {
                 avatar: dataURL
             },
             success: function (res) {
+                console.log(11);
                 if (res.status !== 0) {
                     return layer.msg('更换头像失败')
                 }
